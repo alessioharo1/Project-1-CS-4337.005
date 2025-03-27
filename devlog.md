@@ -1,3 +1,7 @@
+# 03/27/2025 @ 10:59AM
+
+Made typo in modified section of quit with extra parenthesis. Fixed. 
+
 # 03/27/2025 @ 10:48AM
 
 One thing I have learned from this first project is that I need to read directions more clearly and ahead of time. As it's evident, I have very little to no experience with GitHub, and reading the GitHub instructions ahead of time would have helped me be more proactive in finishing this project correctly. 

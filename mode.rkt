@@ -101,7 +101,7 @@
 
 ; Main interactive loop
 (define (interactive-loop)
-  (displayln "Calculator started. Type "quit" to exit.")  ; Welcome message
+  (displayln "Calculator started. Type quit to exit.")  ; Welcome message
   (let loop ([history '()])  ; Start with empty history
     (show-prompt)  ; Display prompt
     (let ([input (read-line)])  ; Read user input
