@@ -67,10 +67,10 @@
   (let ([chars (skip-spaces (cdr chars))])  ; Skip operator and spaces
     (let ([first (read-expr chars history)])  ; Read first operand
       (if (null? (cdr first))  ; Check if valid
-          (error "Invalid Expression")
+          (error "Invalid Expression.")
           (let ([second (read-expr (cadr first) history)])  ; Read second operand
             (if (null? (cdr second))  ; Check if valid
-                (error "Invalid Expression")
+                (error "Invalid Expression.")
                 (list (cond  ; Perform the operation
                         [(char=? op #\+) (+ (car first) (car second))]
                         [(char=? op #\*) (* (car first) (car second))]
@@ -83,7 +83,7 @@
 (define (read-expr chars history)
   (let ([chars (skip-spaces chars)])  ; Skip leading spaces
     (cond
-      [(null? chars) (error "Invalid Expression")]  ; Error if empty
+      [(null? chars) (error "Invalid Expression.")]  ; Error if empty
       [(char=? (car chars) #\-) (read-negative chars history)]  ; Handle negative
       [(or (char=? (car chars) #\+)  ; Handle operations
            (char=? (car chars) #\*)
@@ -96,23 +96,23 @@
     (let ([result (read-expr chars history)])  ; Parse expression
       (let ([remaining (skip-spaces (cadr result))])  ; Check for remaining chars
         (if (not (null? remaining))  ; If anything left, it's invalid
-            (error "Invalid Expression")
+            (error "Invalid Expression.")
             (car result))))))  ; Return the result
 
 ; Main interactive loop
 (define (interactive-loop)
-  (displayln "Calculator started. Press Enter to exit.")  ; Welcome message
+  (displayln "Calculator started. Type "quit" to exit.")  ; Welcome message
   (let loop ([history '()])  ; Start with empty history
     (show-prompt)  ; Display prompt
     (let ([input (read-line)])  ; Read user input
       (cond
-        [(or (eof-object? input) (string=? input "")) (void)]  ; Exit on empty input
+        [(or (eof-object? input) (string=? input "quit")) (void)]  ; Exit on quit.
         [else  ; Process input
          (with-handlers ([exn:fail? (lambda (e)  ; Error handling
                                      (displayln 
                                       (if (string-prefix? (exn-message e) "Error:")
                                           (exn-message e)
-                                          "Error: Invalid Expression"))
+                                          "Error: Invalid Expression."))
                                      (loop history))])
            (let ([result (evaluate-expr input history)])  ; Evaluate expression
              (let ([new-history (cons result history)])  ; Add to history
